@@ -1,4 +1,4 @@
-package com.magicsamplecase.presentation.cards
+package com.magicsamplecase.presentation.scenes.cards
 import com.magicsamplecase.domain.models.Cards
 
 class CardsViewModel(var cards: List<CardViewModel>) {

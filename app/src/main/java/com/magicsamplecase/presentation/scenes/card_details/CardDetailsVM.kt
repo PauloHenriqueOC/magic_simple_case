@@ -1,4 +1,4 @@
-package com.magicsamplecase.presentation.card_details
+package com.magicsamplecase.presentation.scenes.card_details
 
 import com.magicsamplecase.domain.models.CardDetails
 

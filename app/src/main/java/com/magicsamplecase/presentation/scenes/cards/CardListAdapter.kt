@@ -1,4 +1,4 @@
-package com.magicsamplecase.presentation.cards
+package com.magicsamplecase.presentation.scenes.cards
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.jakewharton.rxbinding4.view.clicks
-import com.magicsamplecase.DisposeDelegate
 import com.magicsamplecase.DisposeView
+import com.magicsamplecase.DisposeDelegate
 import com.magicsamplecase.R
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -36,7 +36,7 @@ class CardListAdapter(private var data: MutableList<CardViewModel>) : Adapter<Ca
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), DisposeDelegate by DisposeView() {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), DisposeView by DisposeDelegate() {
 
         fun bindItem(item: CardViewModel) {
             itemView.card_name_txt.text = item.cardName

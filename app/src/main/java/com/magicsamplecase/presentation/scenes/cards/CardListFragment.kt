@@ -1,14 +1,11 @@
-package com.magicsamplecase.presentation.cards
+package com.magicsamplecase.presentation.scenes.cards
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.magicsamplecase.BaseFragment
-import com.magicsamplecase.HandleBackButtom
-import com.magicsamplecase.MainContainerFragment
-import com.magicsamplecase.R
+import com.magicsamplecase.*
 import com.magicsamplecase.presentation.navigator.CardDetailsScreen
 import io.reactivex.rxjava3.kotlin.addTo
 import kotlinx.android.synthetic.main.fragment_card_list.*
@@ -27,12 +24,12 @@ class CardListFragment : BaseFragment(),
     @Inject
     lateinit var cicerone: Cicerone<Router>
 
+    @Inject
+    override lateinit var presenter: CardListPresenter
+
     companion object {
         fun getInstance() = CardListFragment()
     }
-
-    @Inject
-    lateinit var presenter: CardListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +46,8 @@ class CardListFragment : BaseFragment(),
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_card_list, container, false)
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,7 +62,7 @@ class CardListFragment : BaseFragment(),
 
         viewAdapter.onClickSubject.subscribe { id ->
             cicerone.router.navigateTo(CardDetailsScreen(id))
-        }.addTo(baseDisposeBag)
+        }.addTo(disposeBag)
     }
     override fun updateCardList(data: CardsViewModel) {
         cardList.addAll(data.cards)
