@@ -1,7 +1,8 @@
 package com.magicsamplecase
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable
+import com.magicsamplecase.presentation.utils.MappedError
 
 interface BasePresenterView {
     fun displayLoading(value: Boolean)
+    fun handleError(mappedError: MappedError)
 }

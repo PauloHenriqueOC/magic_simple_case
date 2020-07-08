@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.magicsamplecase.*
+import com.magicsamplecase.presentation.utils.MappedError
 import kotlinx.android.synthetic.main.fragment_card_details.*
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
@@ -37,11 +38,19 @@ class CardDetailsFragment(private val cardId: String) : BaseFragment(), CardDeta
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_card_details, container, false)
 
-    override fun onBackPressed() {
-        cicerone.router.exit()
-    }
-
     override fun initView(cardDetailsVM: CardDetailsVM) {
         card_id_text.text = cardDetailsVM.type
     }
+
+    override fun handleError(mappedError: MappedError) {
+        displayErrorDialog(
+            mappedError.message,
+            positiveButtom = "Tentar Novamente",
+            positiveAction = { presenter.bindView() },
+            negativeAction = {}
+        )
+    }
+
+    override fun onBackPressed() =
+        cicerone.router.exit()
 }

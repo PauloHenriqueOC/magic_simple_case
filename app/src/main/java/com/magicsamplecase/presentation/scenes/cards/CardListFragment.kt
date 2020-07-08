@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.magicsamplecase.*
 import com.magicsamplecase.presentation.navigator.CardDetailsScreen
+import com.magicsamplecase.presentation.utils.MappedError
 import io.reactivex.rxjava3.kotlin.addTo
 import kotlinx.android.synthetic.main.fragment_card_list.*
 import ru.terrakok.cicerone.Cicerone
@@ -67,6 +68,15 @@ class CardListFragment : BaseFragment(),
     override fun updateCardList(data: CardsViewModel) {
         cardList.addAll(data.cards)
         viewAdapter.updateData(cardList)
+    }
+
+    override fun handleError(mappedError: MappedError) {
+        displayErrorDialog(
+            mappedError.message,
+            positiveButtom = "Tentar Novamente",
+            positiveAction = { presenter.bindView() },
+            negativeAction = {}
+        )
     }
 
     override fun onBackPressed() =
