@@ -21,9 +21,8 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         // get MainContainerFragment this way
         val childFragment = supportFragmentManager.findFragmentById(R.id.main_container) as HandleBackButtom
+
         // Tells MainActivity to call fragment's onBackPressed()
         childFragment.onBackPressed()
-
-        Log.d("DEBUG_ACTIVITY", childFragment.toString())
     }
 }

@@ -31,6 +31,7 @@ open class MainContainerFragment : Fragment(), HandleBackButtom {
     val presentationComponent: PresentationComponent? by lazy {
         context?.let {
             DaggerPresentationComponent.builder()
+                .contextModule(ContextModule(it))
                 .navigatorModule(
                     NavigatorModule(
                         activity as FragmentActivity,

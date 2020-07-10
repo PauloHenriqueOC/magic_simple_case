@@ -2,12 +2,13 @@ package com.magicsamplecase.presentation.scenes.cards
 
 import com.magicsamplecase.BasePresenter
 import com.magicsamplecase.domain.GetCards
-import com.magicsamplecase.presentation.utils.MappedError
+import com.magicsamplecase.presentation.utils.ErrorMapper
 import io.reactivex.rxjava3.kotlin.addTo
 import javax.inject.Inject
 
 class CardListPresenter @Inject constructor( private val useCase: GetCards,
-                                             private val view: CardListView) : BasePresenter() {
+                                             private val view: CardListView,
+                                             private val errorMapper: ErrorMapper) : BasePresenter() {
 
     override fun bindView() {
         view.displayLoading(true)
@@ -21,7 +22,7 @@ class CardListPresenter @Inject constructor( private val useCase: GetCards,
 
                 // Handle Error
                 { error ->
-                    view.handleError(MappedError.mapException(error))
+                    view.handleError(errorMapper.mapException(error))
                     view.displayLoading(false)
                 }
             )

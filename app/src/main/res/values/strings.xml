@@ -2,4 +2,30 @@
     <string name="app_name">Magic Sample Case</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancelar</string>
+    <string name="try_again">Tentar Novamente</string>
+
+    <string name="login_app_bar_title">Login</string>
+    <string name="card_list_app_bar_title">Cartas</string>
+    <string name="card_details_app_bar_title">Detalhes</string>
+
+    <string name="default_error_title">Eita… =(</string>
+    <string name="incorrect_email_message">Email Incorreto…</string>
+    <string name="incorrect_passw_message">Senha Incorreta…</string>
+
+    <string name="error_400_message">Não conseguimos processar a açao.</string>
+    <string name="error_403_message">Excedeu o numero de requisições diarias.</string>
+    <string name="error_404_message">Card não encontrado.</string>
+    <string name="error_500_message">Houve um problema em nosso servido… tente mais tarde.</string>
+    <string name="error_503_message">Estamos em manutenção… tente mais tarde.</string>
+    <string name="unknown_error_message">Erro Desconhecido</string>
+    <string name="timeout_error_message">Tempo de tentativa excedido… tente mais tarde</string>
+
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+
 </resources>

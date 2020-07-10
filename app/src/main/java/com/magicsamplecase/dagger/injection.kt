@@ -1,11 +1,17 @@
 package com.magicsamplecase.dagger
 
+import android.content.Context
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.magicsamplecase.MainContainerFragment
+import com.magicsamplecase.application.MyAppApplication
+import com.magicsamplecase.data.cache.UserPrefs
 import com.magicsamplecase.data.remote.CardsRemoteDS
+import com.magicsamplecase.data.remote.UserRemoteDS
 import com.magicsamplecase.data.repository.CardsRepository
+import com.magicsamplecase.data.repository.UserRepository
 import com.magicsamplecase.domain.boundaries.CardsRepositoryBoundary
+import com.magicsamplecase.domain.boundaries.UserRepositoryBoundary
 import com.magicsamplecase.presentation.navigator.Navigator
 import dagger.Component
 import dagger.Module
@@ -22,6 +28,7 @@ import java.util.concurrent.TimeUnit
 @PresentationScope
 @Component(
     modules = [
+        ContextModule::class,
         DomainModule::class,
         DataModule::class,
         NavigatorModule::class,
@@ -29,21 +36,34 @@ import java.util.concurrent.TimeUnit
     ]
 )
 interface PresentationComponent {
-
     fun injectMainFragment(fragment: MainContainerFragment)
 
     fun provideCardsRepositoryBoundary() : CardsRepositoryBoundary
+    fun provideUserRepositoryBoundary() : UserRepositoryBoundary
+
     fun providesCardsRDS() : CardsRemoteDS
+    fun providesUserRDS() : UserRemoteDS
 
     fun providesRouter(): Cicerone<Router>
     fun provideNavigator(): Navigator
+
+    fun provideContext(): Context
 }
 
+@Module
+class ContextModule(private val context: Context) {
+    @Provides
+    fun provideContext() = context
+}
 
 @Module
 class DomainModule {
     @Provides
     fun provideCardsRepositoryBoundary(remote: CardsRemoteDS) : CardsRepositoryBoundary = CardsRepository(remote)
+
+    @Provides
+    fun provideUserRepositoryBoundary(remote: UserRemoteDS, cache: UserPrefs) :
+            UserRepositoryBoundary = UserRepository(remote, cache)
 }
 
 @Module

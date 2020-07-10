@@ -1,8 +1,8 @@
 package com.magicsamplecase
 
-import com.magicsamplecase.presentation.utils.MappedError
+import com.magicsamplecase.presentation.utils.ErrorMapper.MappedError
 
 interface BasePresenterView {
     fun displayLoading(value: Boolean)
-    fun handleError(mappedError: MappedError)
+    fun handleError(error: MappedError)
 }
